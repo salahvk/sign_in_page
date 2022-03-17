@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sign_in/login_animation_screen/login_screen.dart';
 
 class SignIn extends StatelessWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -46,7 +47,12 @@ class SignIn extends StatelessWidget {
                         primary: Colors.blue[900],
                         minimumSize: Size.fromHeight(50),
                         shape: StadiumBorder()),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Login_sc();
+                      }));
+                    },
                     child: Text('Sign In')),
               ),
               TextButton(
