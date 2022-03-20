@@ -6,18 +6,22 @@ class Login_sc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Lottie Animation'),
-          centerTitle: true,
+    try {
+      return MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.green),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Lottie Animation'),
+            centerTitle: true,
+          ),
+          body: Column(children: [
+            Lottie.network(
+                'https://assets9.lottiefiles.com/packages/lf20_enlvakcq.json'),
+          ]),
         ),
-        body: Column(children: [
-          Lottie.network(
-              'https://assets9.lottiefiles.com/packages/lf20_enlvakcq.json'),
-        ]),
-      ),
-    );
+      );
+    } catch (e) {
+      return Scaffold(body: Text('data'));
+    }
   }
 }
