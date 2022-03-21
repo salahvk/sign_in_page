@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class newFormFields extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
+  TextInputType? keyboardType;
   bool isobscure;
   final Icon icon;
   final FormFieldValidator<String>? validator;
@@ -13,11 +14,13 @@ class newFormFields extends StatelessWidget {
     required this.icon,
     this.validator,
     required this.controller,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       controller: controller,
       obscureText: isobscure,
       validator: validator,

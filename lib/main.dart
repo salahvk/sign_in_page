@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in/Sign_in/sign_in.dart';
 
-void main() {
+Future main() async {
   runApp(MyApp());
 }
 
@@ -23,6 +23,7 @@ class Page_one extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
             decoration: BoxDecoration(

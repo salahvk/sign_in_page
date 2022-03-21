@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in/login_animation_screen/login_screen.dart';
 import 'package:sign_in/widgets/textField.dart';
@@ -26,6 +27,8 @@ class SignIn extends StatelessWidget {
                   validator: (value) {
                     if (value != null && value.length < 5) {
                       return "Enter minimum five letters";
+                    } else if (!RegExp(r'^[a-z A-Z]+$').hasMatch(value!)) {
+                      return "Avoid special characters from the name";
                     } else {
                       return null;
                     }
@@ -36,6 +39,14 @@ class SignIn extends StatelessWidget {
                   height: 20,
                 ),
                 newFormFields(
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value!.isEmpty || EmailValidator.validate(value)) {
+                      return 'Enter a valid Email';
+                    } else {
+                      return null;
+                    }
+                  },
                   hint: 'Email',
                   icon: Icon(Icons.email),
                   controller: emailcontroller,
@@ -44,6 +55,13 @@ class SignIn extends StatelessWidget {
                   height: 20,
                 ),
                 newFormFields(
+                  validator: (value) {
+                    if (value != null && value.length < 8) {
+                      return "Enter minimum eight letters for password";
+                    } else {
+                      return null;
+                    }
+                  },
                   hint: 'Password',
                   icon: Icon(Icons.lock),
                   isobscure: true,
@@ -63,7 +81,7 @@ class SignIn extends StatelessWidget {
                       onPressed: () {
                         if (formkey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Submitting form')));
+                              const SnackBar(content: Text('Submitting form')));
 
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
